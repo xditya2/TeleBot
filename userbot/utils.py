@@ -107,6 +107,10 @@ def load_module(shortname):
         mod.Config = Config
         mod.borg = bot
         mod.telebot = bot
+        # auto-load
+        mod.admin_cmd = admin_cmd
+        mod.sudo_cmd = sudo_cmd
+        mod.edit_or_reply = edit_or_reply
         # support for paperplaneextended
         sys.modules["userbot.events"] = userbot.utils
         spec.loader.exec_module(mod)
@@ -314,7 +318,7 @@ def sudo_cmd(pattern=None, **args):
     previous_stack_frame = stack[1]
     file_test = Path(previous_stack_frame.filename)
     file_test = file_test.stem.replace(".py", "")
-    allow_sudo = args.get("allow_sudo", False)
+    allow_sudo = args.get("allow_sudo", True)
 
     # get the pattern from the decorator
     if pattern is not None:
@@ -329,16 +333,14 @@ def sudo_cmd(pattern=None, **args):
             except:
                 CMD_LIST.update({file_test: [cmd]})
 
-    args["outgoing"] = True
+    args["incoming"] = True
     # should this command be available for other users?
-    if allow_sudo:
-        args["from_users"] = list(Var.SUDO_USERS)
-        # Mutually exclusive with outgoing (can only set one of either).
-        args["incoming"] = True
-        del args["allow_sudo"]
+    args["from_users"] = list(Config.SUDO_USERS)
+    # Mutually exclusive with outgoing (can only set one of either).
+    args["incoming"] = True
 
     # error handling condition check
-    elif "incoming" in args and not args["incoming"]:
+    if "incoming" in args and not args["incoming"]:
         args["outgoing"] = True
 
     # add blacklist chats, UB should not respond in these chats
