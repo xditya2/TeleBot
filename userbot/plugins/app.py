@@ -15,7 +15,7 @@ from userbot.events import register
 from userbot.utils import admin_cmd
 
 @telebot.on(admin_cmd(pattern="app (.*)"))
-
+@telebot.on(sudo_cmd(pattern="app (.*)"))
 async def apk(e):
 
     try:

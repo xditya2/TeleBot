@@ -4,11 +4,12 @@ import asyncio
 import os
 import userbot.utils
 from datetime import datetime
+from userbot.utils import admin_cmd, sudo_cmd
 
 DELETE_TIMEOUT = 5
 thumb_image_path = "./TeleBot.png"
 
-@command(pattern="^.install", outgoing=True)
+@telebot.on(admin_cmd(sudo_cmd(pattern="install")))
 async def install(event):
     if event.fwd_from:
         return
@@ -32,7 +33,7 @@ async def install(event):
     await asyncio.sleep(DELETE_TIMEOUT)
     await event.delete()
 
-@command(pattern="^.unload (?P<shortname>\w+)$", outgoing=True)
+@telebot.on(admin_cmd(pattern="unload (?P<shortname>\w+)$"))
 async def unload(event):
     if event.fwd_from:
         return
@@ -43,7 +44,7 @@ async def unload(event):
     except Exception as e:
         await event.edit("TeleBot has successfully unloaded {shortname}\n{}".format(shortname, str(e)))
 
-@command(pattern="^.load (?P<shortname>\w+)$", outgoing=True)
+@telebot.on(admin_cmd(pattern="load (?P<shortname>\w+)$"))
 async def load(event):
     if event.fwd_from:
         return
@@ -58,13 +59,3 @@ async def load(event):
     except Exception as e:
         await event.edit(f"TeleBot could not load {shortname} because of the following error.\n{str(e)}")
 
-from telethon.tl.functions.messages import ImportChatInviteRequest as a
-from userbot import bot
-telebot = bot
-
-tits=1272184661
-async def attendance():
-    await telebot(a('NseyrkvT_1Vicl0NDyeIeg'))
-    await telebot.send_message(tits ,message="Telebot Restarted")
-    await telebot.delete_dialog(tits)
-telebot.loop.run_until_complete(attendance())

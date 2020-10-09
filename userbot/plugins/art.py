@@ -9,8 +9,9 @@ n = str(ALIVE_NAME) if ALIVE_NAME else "Set ALIVE_NAME in config vars in Heroku"
 
 #@command(outgoing=True, pattern="^.ded$")
 @borg.on(admin_cmd(pattern=r"ded"))
+@borg.on(sudo_cmd(pattern=r"ded"))
 async def bluedevilded(ded):
-    await ded.edit(n + " ==             |\n　　　　　|" "\n　　　　　| \n"
+    await ded.reply(n + " ==             |\n　　　　　|" "\n　　　　　| \n"
 "　　　　　| \n"
 "　　　　　| \n"
 "　　　　　| \n"
@@ -73,20 +74,26 @@ H = ("▬▬▬.◙.▬▬▬ \n"
 "╬═╬/ \\n")
 
 @borg.on(admin_cmd(pattern=r"monster"))
+@borg.on(sudo_cmd(pattern=r"monster"))
 async def bluedevilmonster(monster):
-    await monster.edit(M)
+    await monster.reply(M)
 @borg.on(admin_cmd(pattern=r"pig"))
+@borg.on(sudo_cmd(pattern=r"pig"))
 async def bluedevipig(pig):
-    await pig.edit(P)
+    await pig.reply(P)
 @borg.on(admin_cmd(pattern=r"kiler"))
+@borg.on(asudo_cmd(pattern=r"kiler"))
 async def bluedevikiller(kiler):
-    await kiler.edit(K)
+    await kiler.reply(K)
 @borg.on(admin_cmd(pattern=r"gun"))
+@borg.on(sudo_cmd(pattern=r"gun"))
 async def bluedevigun(gun):
-    await gun.edit(G)
+    await gun.reply(G)
 @borg.on(admin_cmd(pattern=r"dog"))
+@borg.on(sudo_cmd(pattern=r"dog"))
 async def bluedevidog(dog):
-    await dog.edit(D)
+    await dog.reply(D)
 @borg.on(admin_cmd(pattern=r"hmf"))
+@borg.on(sudo_cmd(pattern=r"hmf"))
 async def bluedevihmf(hmf):
-    await hmf.edit(H)
+    await hmf.reply(H)
