@@ -17,6 +17,6 @@ jobs:
           commit_message: 'Changing borg.on to telebot.on'
           commit_options: '--no-verify'
           repository: .
-          commit_user_name: xditya
-          commit_user_email: 58950863+xditya@users.noreply.github.com
+          commit_user_name: xditya2
+          commit_user_email: 60791103+xditya2@users.noreply.github.com
           commit_author: xditya <58950863+xditya@users.noreply.github.com>
