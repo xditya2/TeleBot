@@ -1,4 +1,4 @@
-# 					       TeleBot - Telegram UserBot
+# TeleBot - Telegram UserBot
 
 # <p align="center"><a href="https://github.com/xditya/TeleBot"><img src="https://github-readme-stats.vercel.app/api/pin?username=xditya&show_icons=true&theme=white&hide_border=true&repo=TeleBot"></a></p>
 
